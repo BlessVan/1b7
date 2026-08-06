@@ -6,29 +6,158 @@
 <title>1B7.com — Opinions</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --turquoise: #2AA9A0;
+    --turquoise-dark: #1E7A73;
+  }
+  * { box-sizing: border-box; }
   body {
     margin: 0;
     min-height: 100vh;
     background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  .page {
+    width: 100%;
+    max-width: 520px;
     text-align: center;
   }
   h1 {
     font-family: 'Dancing Script', cursive;
-    color: #2AA9A0;
-    text-shadow: 0 0 12px rgba(42,169,160,0.5);
-    font-size: 2rem;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--turquoise);
+    text-shadow: 0 0 12px rgba(42, 169, 160, 0.5);
+    margin: 0 0 1.5rem;
   }
-  a { color: #2AA9A0; }
+  select {
+    width: 100%;
+    height: 48px;
+    font-size: 1.05rem;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 1.5rem;
+  }
+  .category-panel {
+    display: none;
+    text-align: left;
+  }
+  .category-panel.active { display: block; }
+  .subitem {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .subitem h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    color: #222;
+  }
+  .subitem a {
+    display: inline-block;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    color: var(--turquoise-dark);
+    text-decoration: none;
+    border: 1px solid var(--turquoise);
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.95rem;
+  }
+  .subitem a:hover { background: rgba(42,169,160,0.08); }
+  .subitem ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+    color: #555;
+    font-size: 0.92rem;
+  }
+  .coming-soon {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+  }
+  .back-link {
+    display: block;
+    margin-top: 2rem;
+    color: var(--turquoise-dark);
+    text-align: center;
+  }
 </style>
 </head>
 <body>
-  <div>
-    <h1>Survey links coming soon</h1>
-    <p><a href="index.html">&larr; Back to search</a></p>
+
+<div class="page">
+  <h1>Opinions</h1>
+  <select id="categorySelect" onchange="showCategory(this.value)">
+    <option value="">Choose a category</option>
+    <option value="feedback">Feedback</option>
+    <option value="surveys">Surveys</option>
+    <option value="paidSurveys">Paid Surveys</option>
+    <option value="government">Government Offices</option>
+  </select>
+
+  <div class="category-panel" id="feedback">
+    <div class="subitem">
+      <h3>Credit Cards / Banks</h3>
+      <a href="https://www.consumerfinance.gov/complaint/" target="_blank" rel="noopener">Consumer Financial Protection Bureau</a>
+    </div>
+
+    <div class="subitem">
+      <h3>Food / Consumer Products</h3>
+      <a href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener">FTC</a>
+      <a href="https://ask.usda.gov/" target="_blank" rel="noopener">USDA</a>
+      <a href="https://www.fda.gov/safety/report-problem-fda" target="_blank" rel="noopener">FDA</a>
+    </div>
+
+    <div class="subitem">
+      <h3>General Stores / Businesses</h3>
+      <a href="https://www.trustpilot.com/" target="_blank" rel="noopener">Trustpilot</a>
+      <a href="https://www.consumeraffairs.com/" target="_blank" rel="noopener">ConsumerAffairs</a>
+    </div>
+
+    <div class="subitem">
+      <h3>Scams / Fraud</h3>
+      <a href="https://reportfraud.ftc.gov/" target="_blank" rel="noopener">Report to the FTC</a>
+      <p>Common scams to watch for:</p>
+      <ul>
+        <li>Phishing emails/texts posing as your bank or a familiar company</li>
+        <li>Romance scams asking for money from someone you met online</li>
+        <li>Tech support pop-ups or calls asking for remote access or payment</li>
+        <li>Fake prize or lottery messages asking for a fee</li>
+        <li>Callers posing as the IRS, Social Security, or other government agencies</li>
+      </ul>
+      <a href="https://consumer.ftc.gov/scams" target="_blank" rel="noopener">More current scam alerts (FTC)</a>
+    </div>
   </div>
+
+  <div class="category-panel" id="surveys">
+    <p class="coming-soon">Survey links coming soon.</p>
+  </div>
+
+  <div class="category-panel" id="paidSurveys">
+    <p class="coming-soon">Paid survey links coming soon.</p>
+  </div>
+
+  <div class="category-panel" id="government">
+    <p class="coming-soon">Government office links coming soon.</p>
+  </div>
+
+  <a class="back-link" href="index.html">&larr; Back to search</a>
+</div>
+
+<script>
+  function showCategory(value) {
+    document.querySelectorAll('.category-panel').forEach(p => p.classList.remove('active'));
+    if (value) {
+      document.getElementById(value).classList.add('active');
+    }
+  }
+</script>
+
 </body>
 </html>
