@@ -136,7 +136,20 @@
   </div>
 
   <div class="category-panel" id="surveys">
-    <p class="coming-soon">Survey links coming soon.</p>
+    <div class="subitem">
+      <h3>Short Company Survey</h3>
+      <label for="companyName" style="display:block;margin-bottom:0.4rem;font-size:0.95rem;color:#555;">Company name</label>
+      <input type="text" id="companyName" placeholder="e.g. Acme Corp" style="width:100%;height:42px;padding:0 10px;border-radius:6px;border:1px solid #ccc;margin-bottom:1rem;">
+
+      <label for="prompt1" style="display:block;margin-bottom:0.4rem;font-size:0.95rem;color:#555;">People think your company sucks because...</label>
+      <textarea id="prompt1" rows="2" style="width:100%;padding:8px 10px;border-radius:6px;border:1px solid #ccc;margin-bottom:1rem;font-family:inherit;"></textarea>
+
+      <label for="prompt2" style="display:block;margin-bottom:0.4rem;font-size:0.95rem;color:#555;">People think your company is trusted and has knowledgeable people because...</label>
+      <textarea id="prompt2" rows="2" style="width:100%;padding:8px 10px;border-radius:6px;border:1px solid #ccc;margin-bottom:1rem;font-family:inherit;"></textarea>
+
+      <button onclick="findCompanyEmail()" style="width:100%;height:44px;border:none;border-radius:6px;background:#2AA9A0;color:#fff;font-size:1rem;cursor:pointer;margin-bottom:0.75rem;">Find their email</button>
+      <button onclick="prepareSurveyEmail()" style="width:100%;height:44px;border:1px solid #2AA9A0;border-radius:6px;background:#fff;color:#1E7A73;font-size:1rem;cursor:pointer;">Send Survey</button>
+    </div>
   </div>
 
   <div class="category-panel" id="paidSurveys">
@@ -156,6 +169,35 @@
     if (value) {
       document.getElementById(value).classList.add('active');
     }
+  }
+
+  function findCompanyEmail() {
+    const company = document.getElementById('companyName').value.trim();
+    if (!company) {
+      alert('Please enter the company name first.');
+      return;
+    }
+    const query = encodeURIComponent(company + ' contact email');
+    window.open('https://www.google.com/search?q=' + query, '_blank', 'noopener');
+  }
+
+  function prepareSurveyEmail() {
+    const company = document.getElementById('companyName').value.trim();
+    const answer1 = document.getElementById('prompt1').value.trim();
+    const answer2 = document.getElementById('prompt2').value.trim();
+
+    if (!company) {
+      alert('Please enter the company name first.');
+      return;
+    }
+
+    const subject = 'Customer Feedback for ' + company;
+    const body =
+      'People think your company sucks because...\n' + (answer1 || '(no answer given)') +
+      '\n\nPeople think your company is trusted and has knowledgeable people because...\n' + (answer2 || '(no answer given)');
+
+    const mailto = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.location.href = mailto;
   }
 </script>
 
