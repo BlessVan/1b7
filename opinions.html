@@ -157,7 +157,35 @@
   </div>
 
   <div class="category-panel" id="government">
-    <p class="coming-soon">Government office links coming soon.</p>
+    <div class="subitem">
+      <h3>Find Your U.S. House Representative</h3>
+      <label for="zipCode" style="display:block;margin-bottom:0.4rem;font-size:0.95rem;color:#555;">Enter your zip code</label>
+      <input type="text" id="zipCode" placeholder="e.g. 92025" maxlength="5" style="width:100%;height:42px;padding:0 10px;border-radius:6px;border:1px solid #ccc;margin-bottom:1rem;">
+      <button onclick="findRepresentative()" style="width:100%;height:44px;border:none;border-radius:6px;background:#2AA9A0;color:#fff;font-size:1rem;cursor:pointer;">Find My Representative</button>
+    </div>
+
+    <div class="subitem">
+      <h3>Find Your U.S. Senators</h3>
+      <label for="stateSelect" style="display:block;margin-bottom:0.4rem;font-size:0.95rem;color:#555;">Choose your state</label>
+      <select id="stateSelect" style="width:100%;height:44px;padding:0 10px;border-radius:6px;border:1px solid #ccc;margin-bottom:1rem;">
+        <option value="">Select a state</option>
+        <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+        <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+        <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+        <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+        <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+        <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+        <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+        <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+        <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+        <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+        <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+        <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+        <option>Wisconsin</option><option>Wyoming</option>
+      </select>
+      <button onclick="findSenators()" style="width:100%;height:44px;border:none;border-radius:6px;background:#2AA9A0;color:#fff;font-size:1rem;cursor:pointer;">Find My Senators</button>
+      <p style="font-size:0.85rem;color:#888;margin-top:0.75rem;">This opens the official Senate directory — look for your state in the list.</p>
+    </div>
   </div>
 
   <a class="back-link" href="index.html">&larr; Back to search</a>
@@ -198,6 +226,19 @@
 
     const mailto = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     window.location.href = mailto;
+  }
+
+  function findRepresentative() {
+    const zip = document.getElementById('zipCode').value.trim();
+    if (!/^\d{5}$/.test(zip)) {
+      alert('Please enter a 5-digit zip code.');
+      return;
+    }
+    window.open('https://ziplook.house.gov/htbin/findrep_house?ZIP=' + encodeURIComponent(zip), '_blank', 'noopener');
+  }
+
+  function findSenators() {
+    window.open('https://www.senate.gov/senators/index.htm', '_blank', 'noopener');
   }
 </script>
 
