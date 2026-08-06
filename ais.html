@@ -6,29 +6,165 @@
 <title>1B7.com — AIs</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --turquoise: #2AA9A0;
+    --turquoise-dark: #1E7A73;
+  }
+  * { box-sizing: border-box; }
   body {
     margin: 0;
     min-height: 100vh;
     background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  .page {
+    width: 100%;
+    max-width: 520px;
     text-align: center;
   }
   h1 {
     font-family: 'Dancing Script', cursive;
-    color: #2AA9A0;
-    text-shadow: 0 0 12px rgba(42,169,160,0.5);
-    font-size: 2rem;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--turquoise);
+    text-shadow: 0 0 12px rgba(42, 169, 160, 0.5);
+    margin: 0 0 1.5rem;
   }
-  a { color: #2AA9A0; }
+  select {
+    width: 100%;
+    height: 48px;
+    font-size: 1.05rem;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 1.5rem;
+  }
+  .category-panel {
+    display: none;
+    text-align: left;
+  }
+  .category-panel.active { display: block; }
+  .subitem {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .subitem h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    color: #222;
+  }
+  .subitem p {
+    margin: 0 0 0.6rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  .subitem a {
+    display: inline-block;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    color: var(--turquoise-dark);
+    text-decoration: none;
+    border: 1px solid var(--turquoise);
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.95rem;
+  }
+  .subitem a:hover { background: rgba(42,169,160,0.08); }
+  .back-link {
+    display: block;
+    margin-top: 2rem;
+    color: var(--turquoise-dark);
+    text-align: center;
+  }
 </style>
 </head>
 <body>
-  <div>
-    <h1>AI links coming soon</h1>
-    <p><a href="index.html">&larr; Back to search</a></p>
+
+<div class="page">
+  <h1>AIs</h1>
+  <select id="categorySelect" onchange="showCategory(this.value)">
+    <option value="">Choose a category</option>
+    <option value="chat">General Chat / Assistants</option>
+    <option value="image">Image Generation</option>
+    <option value="video">Video Generation</option>
+    <option value="audio">Music / Audio</option>
+    <option value="coding">Coding-Focused</option>
+    <option value="research">Research / Search-Style AI</option>
+  </select>
+
+  <div class="category-panel" id="chat">
+    <div class="subitem">
+      <h3>General Chat / Assistants</h3>
+      <p>Good for writing, answering questions, research, and general help.</p>
+      <a href="https://claude.ai" target="_blank" rel="noopener">Claude</a>
+      <a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a>
+      <a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a>
+      <a href="https://copilot.microsoft.com" target="_blank" rel="noopener">Copilot</a>
+    </div>
   </div>
+
+  <div class="category-panel" id="image">
+    <div class="subitem">
+      <h3>Image Generation</h3>
+      <p>Creating pictures and art from text descriptions.</p>
+      <a href="https://www.midjourney.com" target="_blank" rel="noopener">Midjourney</a>
+      <a href="https://openai.com/index/dall-e-3/" target="_blank" rel="noopener">DALL-E</a>
+      <a href="https://firefly.adobe.com" target="_blank" rel="noopener">Adobe Firefly</a>
+    </div>
+  </div>
+
+  <div class="category-panel" id="video">
+    <div class="subitem">
+      <h3>Video Generation</h3>
+      <p>Creating short video clips from text.</p>
+      <a href="https://openai.com/sora/" target="_blank" rel="noopener">Sora</a>
+      <a href="https://runwayml.com" target="_blank" rel="noopener">Runway</a>
+    </div>
+  </div>
+
+  <div class="category-panel" id="audio">
+    <div class="subitem">
+      <h3>Music / Audio</h3>
+      <p>Creating songs or realistic voice audio.</p>
+      <a href="https://suno.com" target="_blank" rel="noopener">Suno</a>
+      <a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a>
+    </div>
+  </div>
+
+  <div class="category-panel" id="coding">
+    <div class="subitem">
+      <h3>Coding-Focused</h3>
+      <p>Built specifically to help write and fix computer code.</p>
+      <a href="https://github.com/features/copilot" target="_blank" rel="noopener">GitHub Copilot</a>
+      <a href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code</a>
+      <a href="https://cursor.com" target="_blank" rel="noopener">Cursor</a>
+    </div>
+  </div>
+
+  <div class="category-panel" id="research">
+    <div class="subitem">
+      <h3>Research / Search-Style AI</h3>
+      <p>Combines AI answers with live web search citations.</p>
+      <a href="https://www.perplexity.ai" target="_blank" rel="noopener">Perplexity</a>
+    </div>
+  </div>
+
+  <a class="back-link" href="index.html">&larr; Back to search</a>
+</div>
+
+<script>
+  function showCategory(value) {
+    document.querySelectorAll('.category-panel').forEach(p => p.classList.remove('active'));
+    if (value) {
+      document.getElementById(value).classList.add('active');
+    }
+  }
+</script>
+
 </body>
 </html>
