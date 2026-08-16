@@ -96,71 +96,46 @@
   <h1>Create a Blessed Legacy</h1>
   <p class="subtitle">Share the story of a loved one.</p>
 
-  <label for="fullName">Full name</label>
-  <input type="text" id="fullName">
+  <form action="https://formspree.io/f/mqpzddbj" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_subject" value="Blessed Legacy Submission">
 
-  <div class="row">
-    <div>
-      <label for="dateDeparted">Date departed</label>
-      <input type="date" id="dateDeparted">
+    <label for="fullName">Full name</label>
+    <input type="text" id="fullName" name="Full name" required>
+
+    <div class="row">
+      <div>
+        <label for="dateDeparted">Date departed</label>
+        <input type="date" id="dateDeparted" name="Date departed">
+      </div>
+      <div>
+        <label for="zip">ZIP code</label>
+        <input type="text" id="zip" name="ZIP code" maxlength="5">
+      </div>
     </div>
-    <div>
-      <label for="zip">ZIP code</label>
-      <input type="text" id="zip" maxlength="5">
+
+    <div class="row">
+      <div>
+        <label for="city">City</label>
+        <input type="text" id="city" name="City">
+      </div>
+      <div>
+        <label for="state">State</label>
+        <input type="text" id="state" name="State">
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div>
-      <label for="city">City</label>
-      <input type="text" id="city">
-    </div>
-    <div>
-      <label for="state">State</label>
-      <input type="text" id="state">
-    </div>
-  </div>
+    <label for="photo">Photo</label>
+    <input type="file" id="photo" name="Photo" accept="image/*">
 
-  <label for="photo">Photo</label>
-  <input type="file" id="photo" accept="image/*">
-  <p class="note">This test form can't attach the photo automatically — you'll be asked to attach it yourself when the email opens.</p>
+    <label for="story">Their story</label>
+    <textarea id="story" name="Their story" rows="6" placeholder="Share memories, character, and the moments that mattered."></textarea>
 
-  <label for="story">Their story</label>
-  <textarea id="story" rows="6" placeholder="Share memories, character, and the moments that mattered."></textarea>
-
-  <button class="submit" onclick="submitLegacy()">Submit for Review</button>
+    <button class="submit" type="submit">Submit for Review</button>
+  </form>
 
   <a class="back-link" href="legacy.html">&larr; Back to Your Blessed Legacy</a>
 </div>
 
-<script>
-  function submitLegacy() {
-    const name = document.getElementById('fullName').value.trim();
-    const date = document.getElementById('dateDeparted').value;
-    const city = document.getElementById('city').value.trim();
-    const state = document.getElementById('state').value.trim();
-    const zip = document.getElementById('zip').value.trim();
-    const story = document.getElementById('story').value.trim();
-
-    if (!name) {
-      alert('Please enter a name before submitting.');
-      return;
-    }
-
-    const subject = 'Blessed Legacy Submission: ' + name;
-    const body =
-      'Name: ' + name +
-      '\nDate departed: ' + (date || 'not provided') +
-      '\nCity: ' + (city || 'not provided') +
-      '\nState: ' + (state || 'not provided') +
-      '\nZIP: ' + (zip || 'not provided') +
-      '\n\nTheir story:\n' + (story || 'not provided') +
-      '\n\n(Please remember to attach the photo before sending.)';
-
-    const mailto = 'mailto:blessed.1b7@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    window.location.href = mailto;
-  }
-</script>
-
 </body>
 </html>
+1
