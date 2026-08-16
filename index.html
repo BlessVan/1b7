@@ -70,6 +70,20 @@
   }
   #aisButton { left: 2.5rem; }
   #opinionsButton { right: 2.5rem; }
+  #legacyButton {
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+    min-width: 74px;
+    border-radius: 40px;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    white-space: normal;
+    max-width: 130px;
+  }
+  #legacyButton:hover { transform: translateX(-50%) scale(1.05); }
 
   /* Question overlay */
   .overlay {
@@ -169,6 +183,7 @@
 </div>
 
 <button id="aisButton" class="side-button" onclick="window.location.href='ais.html'">AIs</button>
+<button id="legacyButton" class="side-button" onclick="window.location.href='legacy.html'">Your Blessed Legacy</button>
 <button id="opinionsButton" class="side-button" onclick="window.location.href='opinions.html'">Opinions</button>
 
 <footer style="position:fixed;bottom:0.5rem;left:0;right:0;text-align:center;font-size:0.8rem;color:#999;">
