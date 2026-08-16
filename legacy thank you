@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1B7.com — Thank You</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --turquoise: #2AA9A0;
+    --turquoise-dark: #1E7A73;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .page { max-width: 480px; }
+  h1 {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--turquoise);
+    text-shadow: 0 0 12px rgba(42, 169, 160, 0.5);
+    margin: 0 0 1rem;
+  }
+  p {
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  .back-link {
+    display: block;
+    margin-top: 2rem;
+    color: var(--turquoise-dark);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <h1>Thank You</h1>
+  <p>Your submission has been received and will be reviewed shortly. We're honored to help carry this story forward.</p>
+  <a class="back-link" href="legacy.html">&larr; Back to Your Blessed Legacy</a>
+</div>
+
+</body>
+</html>
