@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1B7.com — Your Blessed Legacy</title>
+<title>1B7.com — Private Memories</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -48,6 +48,13 @@
     display: flex;
     gap: 1rem;
     align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .entry:hover {
+    box-shadow: 0 0 14px rgba(42, 169, 160, 0.35);
+    transform: translateY(-2px);
   }
   .avatar {
     flex-shrink: 0;
@@ -96,37 +103,17 @@
 <body>
 
 <div class="page">
-  <h1>Your Blessed Legacy</h1>
+  <h1>Private Memories</h1>
   <p class="subtitle">A place for memories to live on.</p>
 
-  <div class="entry">
-    <div class="avatar">RM</div>
+  <a class="entry" href="private-memories-access.html">
+    <div class="avatar">BJ</div>
     <div class="entry-details">
-      <h2><a href="legacy-robert-miller.html" style="color:inherit;text-decoration:none;">Robert Miller</a></h2>
-      <div class="dates">1942 &ndash; 2024</div>
-      <p>A gentle man who loved fishing at dawn and always had a joke ready for anyone who needed a smile. He is remembered for his patience, his garden, and the way he made everyone feel welcome at his table.</p>
+      <h2>Bobbie J. Barney</h2>
+      <div class="dates">1940 &ndash; 2025</div>
+      <p>A sister, a friend, who is truly missed. She left a message in her own words for all who knew her.</p>
     </div>
-  </div>
-
-  <div class="entry">
-    <div class="avatar">EC</div>
-    <div class="entry-details">
-      <h2>Eleanor Carter</h2>
-      <div class="dates">1955 &ndash; 2023</div>
-      <p>A devoted teacher for over thirty years, Eleanor believed every child deserved to feel seen. Her classroom was full of laughter, and her kindness reached far beyond the school walls.</p>
-    </div>
-  </div>
-
-  <div class="entry">
-    <div class="avatar">JT</div>
-    <div class="entry-details">
-      <h2>James Thompson</h2>
-      <div class="dates">1968 &ndash; 2025</div>
-      <p>Known for his quiet strength and his love of old cars, James spent his weekends restoring engines and his evenings telling stories to his grandchildren. He will be deeply missed.</p>
-    </div>
-  </div>
-
-  <p class="note">These are sample entries to test the look and feel. No real information is stored here yet.</p>
+  </a>
 
   <a href="legacy-create.html" style="display:inline-block;margin-top:1rem;padding:0.7rem 1.5rem;border-radius:8px;background:#2AA9A0;color:#fff;text-decoration:none;font-size:0.98rem;">Create a Blessed Legacy</a>
 
