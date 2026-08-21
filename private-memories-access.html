@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Memories - Enter Access Code</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --turquoise: #2ec4c4;
+    --turquoise-glow: rgba(46, 196, 196, 0.55);
+    --cream: #fbf6ec;
+    --cream-deep: #f3ead9;
+    --ink: #3a332a;
+    --ink-soft: #6b5f4f;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+  }
+
+  .card {
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    background: #ffffffaa;
+    border: 1px solid rgba(46, 196, 196, 0.25);
+    border-radius: 16px;
+    padding: 44px 32px;
+  }
+
+  h1 {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: var(--turquoise);
+    text-shadow: 0 0 18px var(--turquoise-glow);
+    margin: 0 0 10px;
+  }
+
+  p.instructions {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+    line-height: 1.5;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    font-size: 1.6rem;
+    letter-spacing: 0.5em;
+    text-align: center;
+    padding: 14px 10px;
+    border: 2px solid var(--turquoise);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--turquoise-glow);
+  }
+
+  button {
+    margin-top: 22px;
+    width: 100%;
+    font-size: 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.04em;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: var(--turquoise);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 16px var(--turquoise-glow);
+  }
+
+  button:hover {
+    filter: brightness(1.05);
+  }
+
+  .error {
+    margin-top: 18px;
+    color: #b5514a;
+    font-size: 1.05rem;
+    min-height: 1.4em;
+  }
+
+  footer {
+    margin-top: 26px;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Private Memories</h1>
+  <p class="instructions">Please enter the six-digit access code you were given to view this memory page.</p>
+
+  <input type="text" id="codeInput" maxlength="6" inputmode="numeric" placeholder="------" autocomplete="off">
+  <button onclick="checkCode()">View Page</button>
+  <div class="error" id="errorMsg"></div>
+
+  <footer>Blessed Corporation</footer>
+</div>
+
+<script>
+  // Each access code maps to the page it unlocks.
+  const accessCodes = {
+    "511311": "bobbie-jean-wallace.html"
+  };
+
+  function checkCode() {
+    const input = document.getElementById('codeInput').value.trim();
+    const errorMsg = document.getElementById('errorMsg');
+
+    if (accessCodes[input]) {
+      window.location.href = accessCodes[input];
+    } else {
+      errorMsg.textContent = "That code wasn't recognized. Please check it and try again.";
+    }
+  }
+
+  document.getElementById('codeInput').addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') {
+      checkCode();
+    }
+  });
+</script>
+</body>
+</html>
