@@ -48,9 +48,13 @@
     border-color: var(--turquoise);
     box-shadow: 0 0 6px rgba(42, 169, 160, 0.4);
   }
+  .button-row {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 6rem;
+  }
   .side-button {
-    position: fixed;
-    bottom: 2.5rem;
     width: 74px;
     height: 74px;
     border-radius: 50%;
@@ -59,31 +63,21 @@
     border: none;
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    line-height: 1.2;
     cursor: pointer;
     box-shadow: 0 0 20px 6px rgba(42, 169, 160, 0.55);
     transition: box-shadow 0.2s ease, transform 0.2s ease;
+    flex-shrink: 0;
   }
   .side-button:hover {
     box-shadow: 0 0 26px 10px rgba(42, 169, 160, 0.7);
     transform: scale(1.05);
   }
-  #aisButton { left: 2.5rem; }
-  #opinionsButton { right: 2.5rem; }
   #legacyButton {
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    height: auto;
-    min-width: 74px;
-    border-radius: 40px;
-    padding: 0.9rem 1.2rem;
-    font-size: 0.85rem;
-    line-height: 1.2;
-    white-space: normal;
-    max-width: 130px;
+    display: block;
+    margin: 3.6rem auto 0;
   }
-  #legacyButton:hover { transform: translateX(-50%) scale(1.05); }
 
   /* Question overlay */
   .overlay {
@@ -180,11 +174,15 @@
 <div class="page">
   <h1>What are you searching for:</h1>
   <input type="text" id="searchInput" placeholder="Type your search" autocomplete="off">
-</div>
 
-<button id="aisButton" class="side-button" onclick="window.location.href='ais.html'">AIs</button>
-<button id="legacyButton" class="side-button" onclick="window.location.href='legacy.html'">Your Blessed Legacy</button>
-<button id="opinionsButton" class="side-button" onclick="window.location.href='opinions.html'">Opinions</button>
+  <div class="button-row">
+    <button id="aisButton" class="side-button" onclick="window.location.href='ais.html'">AIs</button>
+    <button id="eventsButton" class="side-button" onclick="window.location.href='events.html'">Events</button>
+    <button id="opinionsButton" class="side-button" onclick="window.location.href='opinions.html'">Opinions</button>
+  </div>
+
+  <button id="legacyButton" class="side-button" onclick="window.location.href='legacy.html'">Your Blessed Legacy</button>
+</div>
 
 <footer style="position:fixed;bottom:0.5rem;left:0;right:0;text-align:center;font-size:0.8rem;color:#999;">
   &copy; 2026 Blessed Corporation. All rights reserved. &middot;
