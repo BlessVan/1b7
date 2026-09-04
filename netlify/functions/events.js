@@ -17,6 +17,10 @@ exports.handler = async function (event) {
 
   if (category === 'concerts') {
     url += '&classificationName=' + encodeURIComponent('Music');
+  } else if (category === 'sports') {
+    url += '&classificationName=' + encodeURIComponent('Sports');
+  } else if (category === 'theater') {
+    url += '&classificationName=' + encodeURIComponent('Arts & Theatre');
   } else if (category === 'gaming') {
     url += '&keyword=' + encodeURIComponent('gaming');
   } else if (category === 'pokemon') {
