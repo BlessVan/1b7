@@ -13,10 +13,15 @@ exports.handler = async function (event) {
   const scope = params.scope || 'local';
   const zip = params.zip || '';
 
-  let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=' + apiKey + '&sort=date,asc&size=6';
+  let url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=' + apiKey +
+    '&sort=date,asc&size=15';
 
   if (category === 'concerts') {
     url += '&classificationName=' + encodeURIComponent('Music');
+  } else if (category === 'sports') {
+    url += '&classificationName=' + encodeURIComponent('Sports');
+  } else if (category === 'theater') {
+    url += '&classificationName=' + encodeURIComponent('Arts & Theatre');
   } else if (category === 'gaming') {
     url += '&keyword=' + encodeURIComponent('gaming');
   } else if (category === 'pokemon') {
