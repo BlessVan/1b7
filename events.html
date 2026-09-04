@@ -39,7 +39,7 @@
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
   }
-  select {
+  select, input[type="text"] {
     width: 100%;
     height: 48px;
     font-size: 1.05rem;
@@ -51,7 +51,7 @@
   .scope-toggle {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
   .scope-toggle button {
     flex: 1;
@@ -67,11 +67,21 @@
     background: var(--turquoise);
     color: #fff;
   }
-  .category-panel {
-    display: none;
-    text-align: left;
+  #zipRow { display: none; }
+  #zipRow.active { display: block; }
+  .search-button {
+    width: 100%;
+    height: 44px;
+    border: none;
+    border-radius: 6px;
+    background: var(--turquoise);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
   }
-  .category-panel.active { display: block; }
+  .search-button:hover { background: var(--turquoise-dark); }
+  .results-area { text-align: left; }
   .event-card {
     border: 1px solid #eee;
     border-radius: 10px;
@@ -88,12 +98,12 @@
     color: #888;
     margin-bottom: 0.4rem;
   }
-  .event-card p {
-    margin: 0;
-    font-size: 0.92rem;
-    color: #555;
+  .event-card a {
+    font-size: 0.9rem;
+    color: var(--turquoise-dark);
+    text-decoration: none;
   }
-  .placeholder-msg {
+  .placeholder-msg, .status-msg {
     color: #888;
     font-style: italic;
     text-align: center;
@@ -123,7 +133,11 @@
     <button id="nationalBtn" onclick="setScope('national')">National</button>
   </div>
 
-  <select id="categorySelect" onchange="showCategory(this.value)">
+  <div id="zipRow" class="active">
+    <input type="text" id="zipInput" placeholder="Enter your zip code" maxlength="5">
+  </div>
+
+  <select id="categorySelect">
     <option value="">Choose a category</option>
     <option value="concerts">Concerts</option>
     <option value="gaming">Gaming</option>
@@ -131,80 +145,13 @@
     <option value="other">Other Events</option>
   </select>
 
-  <div class="category-panel" id="concerts">
-    <div class="event-card scope-local">
-      <h3>Riverside Summer Nights</h3>
-      <div class="when-where">Aug 30 &middot; Escondido, CA</div>
-      <p>An outdoor concert series featuring local bands, food trucks, and lawn seating.</p>
-    </div>
-    <div class="event-card scope-local">
-      <h3>Downtown Jazz Festival</h3>
-      <div class="when-where">Sep 12 &middot; San Diego, CA</div>
-      <p>A weekend of live jazz across several downtown venues.</p>
-    </div>
-    <div class="event-card scope-national" style="display:none;">
-      <h3>National Summer Tour Stop</h3>
-      <div class="when-where">Sep 20 &middot; Multiple U.S. Cities</div>
-      <p>A major touring act making stops across the country this fall.</p>
-    </div>
-    <div class="event-card scope-national" style="display:none;">
-      <h3>Coast-to-Coast Music Festival</h3>
-      <div class="when-where">Oct 3-5 &middot; Austin, TX</div>
-      <p>A large multi-day festival drawing acts and fans from across the nation.</p>
-    </div>
+  <button class="search-button" onclick="searchEvents()">Search Events</button>
+
+  <div class="results-area" id="resultsArea">
+    <p class="placeholder-msg">Choose a category and search to see events.</p>
   </div>
 
-  <div class="category-panel" id="gaming">
-    <div class="event-card scope-local">
-      <h3>Local Game Night Meetup</h3>
-      <div class="when-where">Every Thursday &middot; Escondido, CA</div>
-      <p>Board games and card games, open to all ages and skill levels.</p>
-    </div>
-    <div class="event-card scope-local">
-      <h3>Regional Gaming Expo</h3>
-      <div class="when-where">Oct 4-5 &middot; Los Angeles, CA</div>
-      <p>Tabletop, video games, and tournaments for a wide range of interests.</p>
-    </div>
-    <div class="event-card scope-national" style="display:none;">
-      <h3>National Gaming Convention</h3>
-      <div class="when-where">Nov 8-10 &middot; Las Vegas, NV</div>
-      <p>One of the largest annual gaming conventions in the country.</p>
-    </div>
-    <div class="event-card scope-national" style="display:none;">
-      <h3>Esports National Championship</h3>
-      <div class="when-where">Dec 1-3 &middot; Dallas, TX</div>
-      <p>Top competitive teams from across the U.S. face off for the national title.</p>
-    </div>
-  </div>
-
-  <div class="category-panel" id="pokemon">
-    <div class="event-card scope-local">
-      <h3>Community Trading Day</h3>
-      <div class="when-where">Sep 6 &middot; San Marcos, CA</div>
-      <p>A casual meetup for card trading and battling with local collectors.</p>
-    </div>
-    <div class="event-card scope-local">
-      <h3>Regional Championships</h3>
-      <div class="when-where">Nov 15-16 &middot; Anaheim, CA</div>
-      <p>A larger competitive event drawing players from across the region.</p>
-    </div>
-    <div class="event-card scope-national" style="display:none;">
-      <h3>North America International Championships</h3>
-      <div class="when-where">Jun (annually) &middot; Location varies</div>
-      <p>One of the largest official competitive events in the country.</p>
-    </div>
-    <div class="event-card scope-national" style="display:none;">
-      <h3>National Collectors Convention</h3>
-      <div class="when-where">Aug (annually) &middot; Location varies</div>
-      <p>A nationwide gathering for collectors, traders, and competitors.</p>
-    </div>
-  </div>
-
-  <div class="category-panel" id="other">
-    <p class="placeholder-msg">More event types coming soon.</p>
-  </div>
-
-  <p class="note">These are sample listings to test the look and feel. Real event data has not been connected yet.</p>
+  <p class="note">Concerts, Gaming, and Pok&eacute;mon pull live listings from Ticketmaster where available. "Other Events" is still being built out.</p>
 
   <a class="back-link" href="index.html">&larr; Back to search</a>
 </div>
@@ -221,17 +168,66 @@
     currentScope = scope;
     document.getElementById('localBtn').classList.toggle('active', scope === 'local');
     document.getElementById('nationalBtn').classList.toggle('active', scope === 'national');
-    document.querySelectorAll('.event-card').forEach(card => {
-      const isNational = card.classList.contains('scope-national');
-      const show = scope === 'national' ? true : !isNational;
-      card.style.display = show ? '' : 'none';
-    });
+    document.getElementById('zipRow').classList.toggle('active', scope === 'local');
   }
 
-  function showCategory(value) {
-    document.querySelectorAll('.category-panel').forEach(p => p.classList.remove('active'));
-    if (value) {
-      document.getElementById(value).classList.add('active');
+  async function searchEvents() {
+    const category = document.getElementById('categorySelect').value;
+    const zip = document.getElementById('zipInput').value.trim();
+    const resultsArea = document.getElementById('resultsArea');
+
+    if (!category) {
+      resultsArea.innerHTML = '<p class="placeholder-msg">Please choose a category first.</p>';
+      return;
+    }
+
+    if (category === 'other') {
+      resultsArea.innerHTML = '<p class="placeholder-msg">More event types coming soon.</p>';
+      return;
+    }
+
+    if (currentScope === 'local' && !/^\d{5}$/.test(zip)) {
+      resultsArea.innerHTML = '<p class="placeholder-msg">Please enter a 5-digit zip code for local results.</p>';
+      return;
+    }
+
+    resultsArea.innerHTML = '<p class="status-msg">Searching for events...</p>';
+
+    try {
+      const params = new URLSearchParams({ category, scope: currentScope, zip: currentScope === 'local' ? zip : '' });
+      const response = await fetch('/.netlify/functions/events?' + params.toString());
+      const data = await response.json();
+
+      if (data.error) {
+        resultsArea.innerHTML = '<p class="placeholder-msg">Something went wrong fetching events. Please try again later.</p>';
+        return;
+      }
+
+      const events = (data._embedded && data._embedded.events) || [];
+
+      if (events.length === 0) {
+        resultsArea.innerHTML = '<p class="placeholder-msg">No events found for that search. Try a different category or zip code.</p>';
+        return;
+      }
+
+      resultsArea.innerHTML = events.map(ev => {
+        const name = ev.name || 'Untitled Event';
+        const date = (ev.dates && ev.dates.start && ev.dates.start.localDate) || 'Date TBA';
+        const venue = (ev._embedded && ev._embedded.venues && ev._embedded.venues[0]);
+        const city = venue ? (venue.city && venue.city.name) : '';
+        const state = venue ? (venue.state && venue.state.stateCode) : '';
+        const where = venue ? (venue.name + (city ? (', ' + city) : '') + (state ? (', ' + state) : '')) : 'Location TBA';
+        const url = ev.url || '#';
+
+        return '<div class="event-card">' +
+          '<h3>' + name + '</h3>' +
+          '<div class="when-where">' + date + ' &middot; ' + where + '</div>' +
+          '<a href="' + url + '" target="_blank" rel="noopener">View details</a>' +
+          '</div>';
+      }).join('');
+
+    } catch (err) {
+      resultsArea.innerHTML = '<p class="placeholder-msg">Something went wrong fetching events. Please try again later.</p>';
     }
   }
 </script>
