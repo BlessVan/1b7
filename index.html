@@ -9,6 +9,7 @@
   :root {
     --turquoise: #2AA9A0;
     --turquoise-dark: #1E7A73;
+    --turquoise-light: #EAFAF9;
   }
   * { box-sizing: border-box; }
   body {
@@ -48,35 +49,64 @@
     border-color: var(--turquoise);
     box-shadow: 0 0 6px rgba(42, 169, 160, 0.4);
   }
-  .button-row {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    margin-top: 6rem;
+
+  .drawer-heading {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--turquoise);
+    margin: 3rem 0 1rem;
   }
-  .side-button {
-    width: 74px;
-    height: 74px;
-    border-radius: 50%;
+
+  /* Drawer grid: 3 rows of 4 */
+  .drawer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-top: 0;
+  }
+  .drawer {
+    min-height: 78px;
     background: var(--turquoise);
     color: #fff;
     border: none;
+    border-radius: 10px;
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
-    font-size: 1.05rem;
-    line-height: 1.2;
+    font-size: 0.95rem;
+    line-height: 1.15;
     cursor: pointer;
-    box-shadow: 0 0 20px 6px rgba(42, 169, 160, 0.55);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    box-shadow: 0 0 14px 4px rgba(42, 169, 160, 0.45);
+    transition: box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
-  .side-button:hover {
-    box-shadow: 0 0 26px 10px rgba(42, 169, 160, 0.7);
-    transform: scale(1.05);
+  .drawer:hover {
+    background: var(--turquoise-light);
+    color: var(--turquoise-dark);
+    box-shadow: 0 0 20px 8px rgba(42, 169, 160, 0.65);
+    transform: translateY(-2px);
   }
-  #legacyButton {
-    display: block;
-    margin: 3.6rem auto 0;
+  .drawer.coming-soon {
+    opacity: 0.55;
+    cursor: default;
+  }
+  .drawer.coming-soon:hover {
+    background: var(--turquoise);
+    color: #fff;
+    box-shadow: 0 0 14px 4px rgba(42, 169, 160, 0.45);
+    transform: none;
+  }
+  .drawer .soon-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 0.6rem;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
 
   /* Question overlay */
@@ -175,13 +205,26 @@
   <h1>What are you searching for:</h1>
   <input type="text" id="searchInput" placeholder="Type your search" autocomplete="off">
 
-  <div class="button-row">
-    <button id="aisButton" class="side-button" onclick="window.location.href='ais.html'">AIs</button>
-    <button id="eventsButton" class="side-button" onclick="window.location.href='events.html'">Events</button>
-    <button id="opinionsButton" class="side-button" onclick="window.location.href='opinions.html'">Opinions</button>
-  </div>
+  <h2 class="drawer-heading">Smart Searches</h2>
+  <div class="drawer-grid">
+    <!-- Row 1: already-built features -->
+    <button class="drawer" onclick="window.location.href='ais.html'">AI's</button>
+    <button class="drawer" onclick="window.location.href='opinions.html'">Opinions</button>
+    <button class="drawer" onclick="window.location.href='legacy.html'">Your Legacy</button>
+    <button class="drawer" onclick="window.location.href='events.html'">Ticketmaster</button>
 
-  <button id="legacyButton" class="side-button" onclick="window.location.href='legacy.html'">Your Blessed Legacy</button>
+    <!-- Row 2: coming soon -->
+    <button class="drawer coming-soon">Vivid Seats<span class="soon-label">Coming Soon</span></button>
+    <button class="drawer coming-soon">AXS<span class="soon-label">Coming Soon</span></button>
+    <button class="drawer coming-soon">SeatGeek<span class="soon-label">Coming Soon</span></button>
+    <button class="drawer coming-soon">Eventbrite<span class="soon-label">Coming Soon</span></button>
+
+    <!-- Row 3: coming soon -->
+    <button class="drawer coming-soon">Dice<span class="soon-label">Coming Soon</span></button>
+    <button class="drawer coming-soon">StubHub<span class="soon-label">Coming Soon</span></button>
+    <button class="drawer coming-soon">TickPick<span class="soon-label">Coming Soon</span></button>
+    <button class="drawer coming-soon">Gametime<span class="soon-label">Coming Soon</span></button>
+  </div>
 </div>
 
 <footer style="position:fixed;bottom:0.5rem;left:0;right:0;text-align:center;font-size:0.8rem;color:#999;">
